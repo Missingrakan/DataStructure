@@ -2,6 +2,25 @@
 
 #include "seqlist.h"
 
+bool _SeqListInc(SeqList *psl)
+{
+	assert(psl != NULL);
+	psl->base = (DataType *)realloc(psl->base, sizeof(DataType)*(psl->capacity + SEQLIST_INC_SIZE));
+	if (psl->base == NULL)
+		return false;
+	psl->capacity += SEQLIST_INC_SIZE;
+	printf("增容成功!");
+	return true;
+}
+
+
+void swap(DataType *elem1, DataType *elem2)
+{
+	DataType tmp = *elem1;
+	*elem1 = *elem2;
+	*elem2 = tmp;
+}
+
 void SeqListInit(SeqList *psl, int sz)
 {
 	psl->capacity = sz > SEQLIST_DEFAULT_SIZE ? sz : SEQLIST_DEFAULT_SIZE;
@@ -35,7 +54,7 @@ bool SeqListIsEmpty(SeqList *psl)
 bool SeqListPushBack(SeqList *psl, DataType x)
 {
 	assert(psl != NULL);
-	if (SeqListIsFull(psl))
+	if (SeqListIsFull(psl) && !_SeqListInc(psl))
 	{
 		printf("push_back:顺序表已满，%d不能插入!\n",x);
 		return false;
@@ -48,7 +67,7 @@ bool SeqListPushBack(SeqList *psl, DataType x)
 bool SeqListPushFront(SeqList *psl, DataType x)
 {
 	assert(psl != NULL);
-	if (SeqListIsFull(psl))
+	if (SeqListIsFull(psl) && !_SeqListInc(psl))
 	{
 		printf("push_front:顺序表已满，%d不能插入!\n");
 		return false;
@@ -105,7 +124,7 @@ size_t SeqListCapacity(SeqList *psl)
 bool SeqListInsertByPos(SeqList *psl, int pos, DataType x)
 {
 	assert(psl != NULL);
-	if (SeqListIsFull(psl))
+	if (SeqListIsFull(psl) && !_SeqListInc(psl))
 	{
 		printf("insert_pos:顺序表已满，%d不能插入!\n", x);
 		return false;
@@ -128,7 +147,7 @@ bool SeqListInsertByPos(SeqList *psl, int pos, DataType x)
 bool SeqListInsertByVal(SeqList *psl, DataType x)
 {
 	assert(psl != NULL);
-	if (SeqListIsFull(psl))
+	if (SeqListIsFull(psl) && !_SeqListInc(psl))
 	{
 		printf("insert_val:顺序表已满，%d不能插入!\n", x);
 		return false;
@@ -141,4 +160,121 @@ bool SeqListInsertByVal(SeqList *psl, DataType x)
 	psl->base[i + 1] = x;
 	psl->size++;
 	return true;
+}
+
+bool SeqListFindByPos(SeqList *psl, int pos, DataType *ret)
+{
+	assert(psl != NULL);
+	if (pos<0 || pos > psl->size - 1)
+	{
+		printf("要查找的位置不合法!\n");
+		return false;
+	}
+	*ret = psl->base[pos];
+	return true;
+}
+
+int SeqListFindByVal(SeqList *psl, DataType key)
+{
+	assert(psl != NULL);
+	for (int i = 0; i < psl->size; i++)
+	{
+		if (psl->base[i] == key)
+			return i;
+	}
+	return -1;
+}
+
+bool SeqListDeleteByPos(SeqList *psl, int pos)
+{
+	assert(psl != NULL);
+	if (pos < 0 || pos > psl->size - 1)
+	{
+		printf("要删除的位置不合法!\n");
+		return false;
+	}
+	for (int i = pos; i < psl->size-1; i++)
+	{
+		psl->base[i] = psl->base[i + 1];
+	}
+	psl->size--;
+	return true;
+}
+
+bool SeqListDeleteByVal(SeqList *psl, DataType key)
+{
+	assert(psl != NULL);
+	int index = SeqListFindByVal(psl,key);
+	if (index == -1)
+	{
+		printf("要删除的数据不存在!\n");
+		return false;
+	}
+	return SeqListDeleteByPos(psl, index);
+}
+
+bool SeqListModifyByPos(SeqList *psl, int pos, DataType x)
+{
+	assert(psl != NULL);
+	if (pos < 0 || pos > psl->size - 1)
+	{
+		printf("要修改的位置不合法!\n");
+		return false;
+	}
+	psl->base[pos] = x;
+	return true;
+
+}
+
+bool SeqListModifyByVal(SeqList *psl, DataType key, DataType x)
+{
+	assert(psl != NULL);
+	int index = SeqListFindByVal(psl, key);
+	if (index == -1)
+	{
+		printf("要修改的数据不存在!\n");
+		return false;
+	}
+	psl->base[index] = x;
+	return true;
+}
+
+void SeqListSort(SeqList *psl)
+{
+	for (int i = 0; i < psl->size; i++)
+	{
+		for (int j = 0; j < psl->size - i - 1; j++)
+		{
+			if (psl->base[j] > psl->base[j + 1])
+			{
+				swap(&psl->base[j], &psl->base[j + 1]);
+			}
+		}
+	}
+}
+
+void SeqListReverse(SeqList *psl)
+{
+	assert(psl != NULL);
+	int begin = 0;
+	int end = psl->size - 1;
+	while (begin < end)
+	{
+		swap(&psl->base[begin], &psl->base[end]);
+		begin++;
+		end--;
+	}
+}
+
+void SeqListClear(SeqList *psl)
+{
+	assert(psl != NULL);
+	psl->size = 0;
+}
+
+void SeqListDestroy(SeqList *psl)
+{
+	free(psl->base);
+	psl->base = NULL;
+	psl->capacity = psl->size = 0;
 }

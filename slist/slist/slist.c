@@ -123,9 +123,134 @@ SListNode* SListFindByVal(SList *plist, DataType key)
 bool SListDeleteByVal(SList *plist, DataType key)
 {
 	assert(plist != NULL);
-	SListNode *ret = SListFindByVal(plist, key);
-	if (ret == NULL)
+	SListNode *q = NULL;
+	SListNode *p = plist->first;
+	while ((p->next != NULL) && (p->next->data != key))
+		p = p->next;
+	if (p->next == NULL)
 		return false;
-	ret->next;
 
+	q = p->next; 
+	if (p->next == plist->last)
+		plist->last = p;
+	p->next = q->next;
+	free(q);
+	plist->size--;
+	return true;
+}
+
+size_t SListLength(SList *plist)
+{
+	return plist->size;
+}
+
+void SListClear(SList *plist)
+{
+	SListNode *p = plist->first->next;
+	while (p != NULL)
+	{
+		plist->first->next = p->next;
+		free(p);
+		p = plist->first->next;
+	}
+	plist->last = plist->first;
+	plist->size = 0;
+	printf("Clear Success!\n");
+}
+
+void SListDestroy(SList *plist)
+{
+	SListClear(plist);
+	free(plist->first);
+	plist->first = plist->last = NULL;
+}
+
+void SListReverse(SList *plist)
+{
+	SListNode *p = plist->first->next;
+	SListNode *q = p->next;
+	plist->last = p;
+	plist->last->next = NULL;
+	p = q;
+	while(p != NULL)
+	{
+		q = p->next;
+		p->next = plist->first->next;
+		plist->first->next = p;
+		p = q;
+	}
+}
+
+//void SListReverse(SList *plist)
+//{
+//	if (plist->size > 1)
+//	{
+//		SListNode * p1 = NULL;
+//		SListNode * p2 = plist->first->next;
+//		SListNode * p3 = p2->next;
+//		plist->last = p2;
+//		while (p2 != NULL)
+//		{
+//			p2->next = p1;
+//			p1 = p2;
+//			p2 = p3;
+//			if (p3 != NULL)
+//				p3 = p3->next;
+//		}
+//		plist->first->next = p1;
+//	}
+//}
+
+void SListInsertByVal(SList *plist,DataType x)
+{
+	SListNode *p = plist->first;
+	while ((p->next != NULL) && (x > p->next->data))
+		p = p->next;
+
+	SListNode *s = _BuyNode(x);
+	if (p->next == NULL)
+	{
+		p->next = s;
+		plist->last = s;
+	}
+	else
+	{
+		s->next = p->next;
+		p->next = s;
+	}
+	plist->size++;
+}
+
+void SListSort(SList *plist)
+{
+	if (plist->size > 1)
+	{
+		SListNode *prev = NULL;
+		SListNode *p = plist->first->next;
+		SListNode *q = p->next;
+		plist->last = p;
+		plist->last->next = NULL;
+
+		p = q;
+		while (p != NULL)
+		{
+			q = q->next;
+			prev = plist->first;
+			while (prev->next != NULL && p->data>prev->next->data)
+				prev = prev->next;
+
+			if (prev->next == NULL)
+			{
+				prev->next = p;
+				plist->last = p;
+				p->next = NULL;
+			}
+			else
+			{
+				p->next = prev->next;
+				prev->next = p;
+			}
+			p = q;
+		}
+	}
 }

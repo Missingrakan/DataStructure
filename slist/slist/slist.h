@@ -43,5 +43,12 @@ bool SListPopFront(SList *plist);
 SListNode* SListFindByVal(SList *plist, DataType key);
 bool SListDeleteByVal(SList *plist, DataType key);
 
+size_t SListLength(SList *plist);
+void SListClear(SList *plist);
+void SListDestroy(SList *plist);
+void SListReverse(SList *plist);
+void SListInsertByVal(SList *plist,DataType x);
+void SListSort(SList *plist);
+
 
 #endif

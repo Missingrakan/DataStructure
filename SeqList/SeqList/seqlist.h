@@ -9,6 +9,7 @@
 
 #define DataType int
 #define SEQLIST_DEFAULT_SIZE 8
+#define SEQLIST_INC_SIZE 5
 
 typedef struct SeqList
 {
@@ -28,6 +29,18 @@ bool SeqListInsertByVal(SeqList *psl, DataType x);
 size_t SeqListLength(SeqList *psl);
 size_t SeqListCapacity(SeqList *psl);
 
+void SeqListClear(SeqList *psl);
+void SeqListDestroy(SeqList *psl);
 
+bool SeqListFindByPos(SeqList *psl, int pos, DataType *ret);
+int SeqListFindByVal(SeqList *psl, DataType key);
+
+bool SeqListDeleteByPos(SeqList *psl, int pos);
+bool SeqListDeleteByVal(SeqList *psl, DataType key);
+bool SeqListModifyByPos(SeqList *psl,int pos,DataType x);
+bool SeqListModifyByVal(SeqList *psl,DataType key,DataType x);
+
+void SeqListSort(SeqList *psl);
+void SeqListReverse(SeqList *psl);
 
 #endif
