@@ -155,7 +155,6 @@ void SListClear(SList *plist)
 	}
 	plist->last = plist->first;
 	plist->size = 0;
-	printf("Clear Success!\n");
 }
 
 void SListDestroy(SList *plist)
@@ -253,4 +252,18 @@ void SListSort(SList *plist)
 			p = q;
 		}
 	}
+}
+
+bool SListModifyByVal(SList *plist, DataType key, DataType x)
+{
+	assert(plist != NULL);
+	SListNode* p = SListFindByVal(plist, key);
+	if (p == NULL)
+	{
+		printf("要修改的数据不存在!\n");
+		return false;
+	}
+	p->data = x;
+	return true;
+
 }

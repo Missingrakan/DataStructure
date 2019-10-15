@@ -1,12 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include "slist.h"
+#include "sclist.h"
 
 int main()
 {
-	SList mylist;
-	SListInit(&mylist);
-	SListNode* p = NULL;
+	SCList mylist;
+	SCListInit(&mylist);
+	SCListNode* p = NULL;
 
 	int pos = -1;
 	int select = 1;
@@ -17,7 +17,7 @@ int main()
 	while (select)
 	{
 		printf("***************************************************\n");
-		printf("**********************SList************************\n");
+		printf("**********************SCList************************\n");
 		printf("****** [1] push_back         [2] push_front  ******\n");
 		printf("****** [3] show_list         [0] quit_system ******\n");
 		printf("****** [4] pop_back          [5] pop_front   ******\n");
@@ -38,63 +38,63 @@ int main()
 			printf("请输入要插入的数据<-1结束>:>");
 			while (scanf("%d", &item), item != -1)
 			{
-				SListPushBack(&mylist, item);
+				SCListPushBack(&mylist, item);
 			}
-			SListShow(&mylist);
+			SCListShow(&mylist);
 			break;
 		case 2:
 			printf("请输入要插入的数据<-1结束>:>");
 			while (scanf("%d", &item), item != -1)
 			{
-				SListPushFront(&mylist, item);
+				SCListPushFront(&mylist, item);
 			}
-			SListShow(&mylist);
+			SCListShow(&mylist);
 			break;
-		case 3:
-			SListShow(&mylist);
+		/*case 3:
+			SCListShow(&mylist);
 			break;
 		case 4:
-			SListPopBack(&mylist);
-			SListShow(&mylist);
+			SCListPopBack(&mylist);
+			SCListShow(&mylist);
 			break;
 		case 5:
-			SListPopFront(&mylist);
-			SListShow(&mylist);
+			SCListPopFront(&mylist);
+			SCListShow(&mylist);
 			break;
 		case 7:
 			printf("请输入要插入的数据:>");
 			scanf("%d", &item);
-			SListInsertByVal(&mylist, item);
-			SListShow(&mylist);
+			SCListInsertByVal(&mylist, item);
+			SCListShow(&mylist);
 			break;
 		case 9:
 			printf("请输入要删除的数据:>");
 			scanf("%d", &item);
-			SListDeleteByVal(&mylist, item);
-			SListShow(&mylist);
+			SCListDeleteByVal(&mylist, item);
+			SCListShow(&mylist);
 			break;
 		case 11:
 			printf("请输入要查找的值:>");
 			scanf("%d", &key);
-			p = SListFindByVal(&mylist, key);
+			p = SCListFindByVal(&mylist, key);
 			if (p == NULL)
 				printf("查找的数据不存在!\n");
 			else
-				SListShow(&mylist);
+				SCListShow(&mylist);
 			break;
 		case 12:
-			SListSort(&mylist);
-			SListShow(&mylist);
+			SCListSort(&mylist);
+			SCListShow(&mylist);
 			break;
 		case 13:
-			SListReverse(&mylist);
-			SListShow(&mylist);
-			break;
+			SCListReverse(&mylist);
+			SCListShow(&mylist);
+			break;*/
 		case 14:
-			printf("SList Length = %d\n", SListLength(&mylist));
+			printf("SCList Length = %d\n", SCListLength(&mylist));
 			break;
-		case 15:
-			SListClear(&mylist);
+		/*case 15:
+			SCListClear(&mylist);
 			printf("Clear Success!\n");
 			break;
 		case 17:
@@ -102,9 +102,9 @@ int main()
 			scanf("%d", &key);
 			printf("请输入修改后的值:>");
 			scanf("%d", &item);
-			SListModifyByVal(&mylist, key, item);
-			SListShow(&mylist);
-			break;
+			SCListModifyByVal(&mylist, key, item);
+			SCListShow(&mylist);
+			break;*/
 		default:
 			printf("输入错误，请重新输入......\n");
 			break;
@@ -112,14 +112,6 @@ int main()
 		system("pause");
 		system("cls");
 	}
-	SListDestroy(&mylist);
+	/*SCListDestroy(&mylist);*/
 	return 0;
 }
-
-//int main()
-//{
-//	List mylist;
-//	InitList(&mylist);
-//	CreateList_Tail(&mylist);
-//	return 0;
-//}

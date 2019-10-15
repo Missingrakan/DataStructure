@@ -49,6 +49,8 @@ void SListDestroy(SList *plist);
 void SListReverse(SList *plist);
 void SListInsertByVal(SList *plist,DataType x);
 void SListSort(SList *plist);
+bool SListModifyByVal(SList *plist,DataType key, DataType x);
+
 
 
 #endif
