@@ -101,7 +101,7 @@ bool SListPopBack(SList *plist)
 	SListNode *p = plist->first;
 	if (plist->size == 0)
 		return false;
-	while (p != plist->last)
+	while (p->next != plist->last)
 		p = p->next;
 
 	p->next = NULL;
