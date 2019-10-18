@@ -50,7 +50,7 @@ int main()
 			}
 			SCListShow(&mylist);
 			break;
-		/*case 3:
+		case 3:
 			SCListShow(&mylist);
 			break;
 		case 4:
@@ -61,12 +61,12 @@ int main()
 			SCListPopFront(&mylist);
 			SCListShow(&mylist);
 			break;
-		case 7:
+		/*case 7:
 			printf("请输入要插入的数据:>");
 			scanf("%d", &item);
 			SCListInsertByVal(&mylist, item);
 			SCListShow(&mylist);
-			break;
+			break;*/
 		case 9:
 			printf("请输入要删除的数据:>");
 			scanf("%d", &item);
@@ -82,22 +82,22 @@ int main()
 			else
 				SCListShow(&mylist);
 			break;
-		case 12:
+		/*case 12:
 			SCListSort(&mylist);
 			SCListShow(&mylist);
-			break;
+			break;*/
 		case 13:
 			SCListReverse(&mylist);
 			SCListShow(&mylist);
-			break;*/
+			break;
 		case 14:
 			printf("SCList Length = %d\n", SCListLength(&mylist));
 			break;
-		/*case 15:
+		case 15:
 			SCListClear(&mylist);
 			printf("Clear Success!\n");
 			break;
-		case 17:
+		/*case 17:
 			printf("请输入要修改的数据:>");
 			scanf("%d", &key);
 			printf("请输入修改后的值:>");
@@ -112,6 +112,6 @@ int main()
 		system("pause");
 		system("cls");
 	}
-	/*SCListDestroy(&mylist);*/
+	SCListDestroy(&mylist);
 	return 0;
 }
