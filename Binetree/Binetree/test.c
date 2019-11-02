@@ -5,10 +5,16 @@
 int main()
 {
 	char *str = "ABC##DE##f##G#H##";
+	char *lvr = "CBEDFAGH";
+	char *lrv = "CEFDBHGA";
+	int len = strlen(lvr);
 	int i = 0;
 	BinTree bt;
+	BinTreeNode *p = NULL;
 	BinTreeInit(&bt);
-	BinTreeCreate(&bt,str, &i);
+	//BinTreeCreate(&bt);
+	BinTreeCreateByStr(&bt, str, &i);
+	//BinTreecreateBy_LVR_LRV(&bt,lvr,lrv,len);
 
 	//BinTreeCreate(&bt);
 	//BinTreeCreate(&bt, str);

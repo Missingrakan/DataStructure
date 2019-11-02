@@ -19,8 +19,8 @@ typedef struct BinTree
 void BinTreeInit(BinTree *t);
 void _BinTreeCreate_1(BinTreeNode **t);
 BinTreeNode* _BinTreeCreate_2();
-void BinTreeCreate(BinTree *t, char *str, int *i);
-//void BinTreeCreate(BinTree *t);
+void BinTreeCreateByStr(BinTree *t, char *str, int *i);
+void BinTreeCreate(BinTree *t);
 //¶þ²æÊ÷µÄ±éÀú
 void _PreOrder(BinTreeNode *t);
 void PreOrder(BinTree *t);
@@ -35,11 +35,11 @@ void BinTreeInit(BinTree *t)
 }
 
 
-//void BinTreeCreate(BinTree *t)
-//{
-//	//_BinTreeCreate(&t->root);
-//	t->root = _BinTreeCreate_2();
-//}
+void BinTreeCreate(BinTree *t)
+{
+	//_BinTreeCreate(&t->root);
+	t->root = _BinTreeCreate_2();
+}
 void _BinTreeCreate_1(BinTreeNode **t)
 {
 	DataType item;
@@ -93,12 +93,29 @@ BinTreeNode* _BinTreeCreatByStr(char *str, int *i)
 	}
 }
 
-void BinTreeCreate(BinTree *t, char *str, int *i)
+void BinTreeCreateByStr(BinTree *t, char *str, int *i)
 {
 	t->root = _BinTreeCreatByStr(str, i);
 }
 
+BinTreeNode* _BinTreecreateBy_LVR_LRV(char *lvr, char *lrv, int n)
+{
+	if (n == 0)
+		return NULL;
+	int k = 0;
+	while (lvr[k] != lrv[n - 1])
+		k++;
+	BinTreeNode *t = (BinTreeNode*)malloc(sizeof(BinTreeNode));
+	t->data = lvr[k];
+	t->rightChild = _BinTreecreateBy_LVR_LRV(lvr+k+1, lrv + k,n-k-1);
+	t->leftChild = _BinTreecreateBy_LVR_LRV(lvr, lrv, k);
+	return t;
+}
 
+void BinTreecreateBy_LVR_LRV(BinTree *t, char *lvr, char *lrv, int n)
+{
+	t->root = _BinTreecreateBy_LVR_LRV(lvr, lrv, n);
+}
 
 void PreOrder(BinTree *t)
 {
