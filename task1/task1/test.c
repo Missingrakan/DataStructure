@@ -225,59 +225,59 @@
 //	return 0;
 //}
 //
-bool isValid(char * s)
-{
-	if (s == NULL)
-		return false;
-	if (*s == '\0')
-		return true;
-
-	int len = strlen(s);
-	char *st = (char*)malloc(sizeof(char)* len);
-	int top = 0;
-
-	while (*s != '\0')
-	{
-		if (*s == '(' || *s == '[' || *s == '{')
-		{
-			st[top++] = *s;
-		}
-		else
-		{
-			if (top == 0)
-				return false;
-
-			if ((*s == ')'&&st[top - 1] != '(')
-				|| (*s == ']'&&st[top - 1] != '[')
-				|| (*s == '}'&&st[top - 1] != '{'))
-				return false;
-			top--;
-		}
-		s++;
-	}
-
-	bool flag = (top == 0 ? 1 : 0);
-	free(st);
-	st = NULL;
-	return flag;
-}
-
-
-int main()
-{
-	//char *str = "()[]{}";
-	//char *str = "([)]";
-	//char *str = "{[]}";
-	char str[10] = { 0 };
-	scanf("%s", str);
-
-	bool flag = isValid(str);
-	if (flag)
-		printf("true\n");
-	else
-		printf("false\n");
-
-}
+//bool isValid(char * s)
+//{
+//	if (s == NULL)
+//		return false;
+//	if (*s == '\0')
+//		return true;
+//
+//	int len = strlen(s);
+//	char *st = (char*)malloc(sizeof(char)* len);
+//	int top = 0;
+//
+//	while (*s != '\0')
+//	{
+//		if (*s == '(' || *s == '[' || *s == '{')
+//		{
+//			st[top++] = *s;
+//		}
+//		else
+//		{
+//			if (top == 0)
+//				return false;
+//
+//			if ((*s == ')'&&st[top - 1] != '(')
+//				|| (*s == ']'&&st[top - 1] != '[')
+//				|| (*s == '}'&&st[top - 1] != '{'))
+//				return false;
+//			top--;
+//		}
+//		s++;
+//	}
+//
+//	bool flag = (top == 0 ? 1 : 0);
+//	free(st);
+//	st = NULL;
+//	return flag;
+//}
+//
+//
+//int main()
+//{
+//	//char *str = "()[]{}";
+//	//char *str = "([)]";
+//	//char *str = "{[]}";
+//	char str[10] = { 0 };
+//	scanf("%s", str);
+//
+//	bool flag = isValid(str);
+//	if (flag)
+//		printf("true\n");
+//	else
+//		printf("false\n");
+//
+//}
 
 //typedef struct SeqList
 //{
@@ -438,3 +438,432 @@ int main()
 //
 //	return 0;
 //}
+
+
+//现在有一个用来存放整数的Hash表，Hash表的存储单位称为桶，
+//每个桶能放3个整数，当一个桶中要放的元素超过3个时，
+//则要将新的元素存放在溢出桶中，每个溢出桶也能放3个元素，
+//多个溢出桶使用链表串起来。此Hash表的基桶数目为素数P，
+//Hash表的hash函数对P取模。代码定义如下：
+
+#define P 7
+#define NULL_DATA -1
+struct bucket_node
+{
+	int data[3];
+	struct bucket_node *next;
+};
+struct bucket_node hash_table[P];
+
+//现在假设hash_table已经初始化好了，
+//insert_new_element()函数目的是把一个新的值插入hash_table中，
+//元素插入成功时，函数返回0，否则返回-1，完成函数。
+
+//int Hash(int key)
+//{
+//	return (key % P);
+//}
+//
+//int insert_new_element(int new_element)
+//{
+//	int index = Hash(new_element);
+//	
+//	
+//}
+//
+//void Init_bucket_node(struct bucket_node *pht, int null_data)
+//{
+//	for (int i = 0; i < 3; i++)
+//	{
+//		pht->data[i] = null_data;
+//	}
+//	pht->next = NULL;
+//}
+//
+//////////////////////////////////////////////////
+//int main()
+//{
+//	Init_bucket_node(&hash_table, NULL_DATA); //
+//	int array[] = { 15, 14, 21, 87, 96, 293, 35, 24, 149, 19, 63, 16, 103, 77, 5, 153, 145, 356, 51, 68, 705, 453 };
+//	for (int i = 0; i < sizeof(array) / sizeof(int); i++)
+//	{
+//		Insert_new_element(array[i]);
+//	}
+//	return 0;
+//}
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//typedef struct node
+//{
+//	float coef;
+//	int exp;
+//	struct node *next;
+//}nodetype, *polyty;
+//
+///*以尾插法创建有m项的多项式单链表*/
+//polyty CreatePolyn(int m)
+//{
+//	polyty head = (nodetype*)malloc(sizeof(nodetype));
+//	head->next = NULL;
+//	nodetype *r = head;//初始化
+//	nodetype *pa = NULL;
+//	int k = 0;
+//	float coef = 0;
+//	int exp = 0;
+//	for (k = 0; k < m; k++)
+//	{
+//		printf("输入系数指数:>");
+//		scanf("%f,%d", &coef, &exp);//输入系数指数
+//		pa = (nodetype*)malloc(sizeof(nodetype));//申请空间
+//		//构造节点
+//		pa->coef = coef;
+//		pa->exp = exp;
+//		//插入节点
+//		r->next = pa;
+//		r = pa;
+//	}
+//	r->next = NULL;
+//	return head;
+//}
+//
+////输出多项式
+//
+//void PrintPolyn(polyty head,char *str)
+//{
+//	nodetype *pt = head->next;
+//	printf("\n The polynomial is: \n");
+//	printf("%s = ", str);
+//	while (pt != NULL)
+//	{
+//		if (pt->exp > 1)
+//			printf("%.2fX^%d", pt->coef, pt->exp);
+//		else if (pt->exp == 1)
+//			printf("%.2fX", pt->coef);
+//		else
+//			printf("%.2f", pt->coef);
+//		if (pt->next != NULL)
+//			printf("+");
+//		pt = pt->next;
+//	}
+//	printf("\n");
+//}
+//
+//void AddPolyn(polyty la, polyty lb)
+//{
+//	nodetype *a = la->next;
+//	nodetype *b = lb->next;
+//	nodetype *c = la;
+//	nodetype *temp = NULL;
+//	float sum = 0.0;
+//
+//	while (a != NULL && b != NULL)
+//	{
+//		if (a->exp < b->exp)
+//		{
+//			c->next = a;
+//			c = a;
+//			a = a->next;
+//		}
+//		else if (a->exp == b->exp)
+//		{
+//			sum = a->coef + b->coef;
+//			//和系数不为0，则修改多项式a的该项系数，
+//			//将la的节点加入多项式，释放lb中该项的结点
+//			if (sum != 0)
+//			{
+//				a->coef = sum;
+//				c->next = a;
+//				c = a;
+//				a = a->next;
+//				temp = b;
+//				b = b->next;
+//				free(temp);
+//				temp = NULL;
+//			}
+//			//和系数为0，则将 la，lb中表示该项的节点都删除掉
+//			else
+//			{
+//				temp = a;
+//				a = a->next;
+//				free(temp);
+//				temp = b;
+//				b = b->next;
+//				free(temp);
+//				temp = NULL;
+//			}
+//		}
+//		else
+//		{
+//			c->next = b;
+//			c = b;
+//			b = b->next;
+//		}
+//	}
+//	/*多项式A中还有剩余，则将剩余的结点加入到和多项式；
+//	否则加入B的节点*/
+//	if (a != NULL)
+//		c->next = a;
+//	else
+//		c->next = b;
+//}
+//
+//int main()
+//{
+//	int m = 0;
+//	printf("创建有m项的多项式:>");
+//	scanf("%d", &m);
+//	polyty psla = CreatePolyn(m);   //创建多项式a
+//	PrintPolyn(psla,"pa");
+//	polyty pslb = CreatePolyn(m);   //创建多项式b
+//	PrintPolyn(pslb,"pb");
+//	AddPolyn(psla, pslb);
+//	PrintPolyn(psla,"pa+pb");
+//	return 0;
+//}
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define DataType int
+
+typedef struct node
+{
+	DataType data;
+	struct node *next;
+}LNode;
+
+
+LNode* CreatLLinkListByHead();
+LNode* CreatLinkListByTail();
+int Insert_LinkList_pos(LNode* head, int i, DataType x);
+LNode* Get_LinkList(LNode* head, int k);
+int Del_LinkList(LNode* head, int i);
+void LinkListShow(LNode* head);
+
+void LinkListShow(LNode* head)
+{
+	LNode *p = head->next;
+	if (p == NULL)
+		return;
+	while (p != NULL)
+	{
+		printf("%d->", p->data);
+		p = p->next;
+	}
+	printf("Over!\n");
+}
+
+LNode* CreatLinkListByHead()
+{
+	LNode *s;
+	int x;
+	LNode* head;
+	head = (LNode*)malloc(sizeof(LNode));
+	head->next = NULL;
+
+	printf("请输入数值(以-1结束)");
+	scanf("%d", &x);
+	while (x != -1)
+	{
+		s = (LNode*)malloc(sizeof(LNode));
+		s->data = x;
+		s->next = head->next;
+		head->next = s;
+		scanf("%d", &x);
+	}
+
+	return head;
+}
+
+LNode* CreatLinkListByTail()
+{
+	LNode *s;
+	LNode *tail;
+	int x = 0;
+	LNode* head = (LNode*)malloc(sizeof(LNode));
+	head->next = NULL;
+	tail = head;
+
+	printf("请输入数值(以-1结束)");
+	scanf("%d", &x);
+	while (x != -1)
+	{
+		s = (LNode*)malloc(sizeof(LNode));
+		s->data = x;
+		tail->next = s;
+		tail = s;
+		scanf("%d", &x);
+	}
+	tail->next = NULL;
+	return head;
+}
+
+LNode* Get_LinkList(LNode* head, int k)
+{
+	LNode *p = head;
+	int j = 0;
+	while ((p->next != NULL) && (j < k))
+	{
+		p = p->next;
+		j++;
+	}
+	if (j == k)
+		return p;
+	else
+		return NULL;
+}
+
+int Insert_LinkList_pos(LNode* head, int i, DataType x)
+{
+	LNode *p, *s;
+	p = Get_LinkList(head, i - 1);       //查找第i-1个节点
+	if (p == NULL)
+	{
+		printf("插入位置i错误!\n");
+		return 0;
+	}
+	else
+	{
+		s = (LNode*)malloc(sizeof(LNode));
+		s->data = x;
+		s->next = p->next;
+		p->next = s;
+		return 1;
+	}
+}
+
+int Del_LinkList(LNode* head, int i)
+{
+	LNode* p;
+	LNode* q;
+	p = Get_LinkList(head, i - 1);
+	if (p == NULL)
+	{
+		printf("第i-1个结点不存在!\n");
+		return 0;
+	}
+	else if (p->next == NULL)
+	{
+		printf("第i个结点不存在!\n");
+		return 0;
+	}
+	else
+	{
+		q = p->next;
+		p->next = q->next;
+		free(q);
+		return 1;
+	}
+
+}
+
+void menu()
+{
+	printf("****************************************************\n");
+	printf("******1.CreatLinkListByHead  0.exit           ******\n");
+	printf("******2.CreatLinkListByTail  3.Insert_LinkList******\n");
+	printf("******4.Del_LinkList         5.	LinkListShow  ******\n");
+	printf("****************************************************\n");
+}
+
+//LinkList CreatLinkListByHead();
+//LinkList CreatLinkListByTail();
+//int Insert_LinkList(LinkList head, int i, DataType x);
+//LinkList Get_LinkList(LinkList head, int k);
+//int Del_LinkList(LinkList head, int i);
+int main()
+{
+	int select = 0;
+	LNode* head1 = NULL;
+	LNode* head2 = NULL;
+	int n = 0;
+
+	int pos = 0;
+	int key = 0;
+	do
+	{
+		menu();
+		printf("请选择:>");
+		scanf("%d", &select);
+
+		switch (select)
+		{
+		case 1:
+			head1 = CreatLinkListByHead();
+			LinkListShow(head1);
+			break;
+		case 2:
+			head2 = CreatLinkListByTail();
+			LinkListShow(head2);
+			break;
+		case 3:
+			printf("请输入要插入的链表(1 或 2):>");
+			scanf("%d", &n);
+			if (n == 1)
+			{
+				printf("请输入要插入的位置:>");
+				scanf("%d", &pos);
+				printf("请输入要插入的值:>");
+				scanf("%d", &key);
+				Insert_LinkList_pos(head1, pos, key);
+				LinkListShow(head1);
+			}
+			else if (n == 2)
+			{
+				printf("请输入要插入的位置:>");
+				scanf("%d", &pos);
+				printf("请输入要插入的值:>");
+				scanf("%d", &key);
+				Insert_LinkList_pos(head2, pos, key);
+				LinkListShow(head2);
+			}
+			else
+				printf("输入错误\n");
+			break;
+		case 4:
+			printf("请输入要删除的链表(1 或 2):>");
+			scanf("%d", &n);
+			if (n == 1)
+			{
+				printf("请输入要删除的位置:>");
+				scanf("%d", &pos);
+				Del_LinkList(head1, pos);
+				LinkListShow(head1);
+			}
+			else if (n == 2)
+			{
+				printf("请输入要删除的位置:>");
+				scanf("%d", &pos);
+				Del_LinkList(head2, pos);
+				LinkListShow(head2);
+			}
+			else
+				printf("输入错误\n");
+			break;
+		case 5:
+			printf("请输入要显示的链表(1 或 2):>");
+			scanf("%d", &n);
+			if (n == 1)
+			{
+				LinkListShow(head1);
+			}
+			else if (n == 2)
+			{
+				LinkListShow(head2);
+			}
+			else
+				printf("输入错误\n");
+			break;
+		case 0:
+			printf("退出程序!\n");
+			break;
+		default:
+			printf("选择错误，请重新输入!\n");
+			break;
+
+		}
+	} while (select);
+	return 0;
+}
