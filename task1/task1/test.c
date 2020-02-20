@@ -623,247 +623,564 @@ struct bucket_node hash_table[P];
 //	return 0;
 //}
 
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//#define DataType int
+//
+//typedef struct node
+//{
+//	DataType data;
+//	struct node *next;
+//}LNode;
+//
+//
+//LNode* CreatLLinkListByHead();
+//LNode* CreatLinkListByTail();
+//int Insert_LinkList_pos(LNode* head, int i, DataType x);
+//LNode* Get_LinkList(LNode* head, int k);
+//int Del_LinkList(LNode* head, int i);
+//void LinkListShow(LNode* head);
+//
+//void LinkListShow(LNode* head)
+//{
+//	LNode *p = head->next;
+//	if (p == NULL)
+//		return;
+//	while (p != NULL)
+//	{
+//		printf("%d->", p->data);
+//		p = p->next;
+//	}
+//	printf("Over!\n");
+//}
+//
+//LNode* CreatLinkListByHead()
+//{
+//	LNode *s;
+//	int x;
+//	LNode* head;
+//	head = (LNode*)malloc(sizeof(LNode));
+//	head->next = NULL;
+//
+//	printf("请输入数值(以-1结束)");
+//	scanf("%d", &x);
+//	while (x != -1)
+//	{
+//		s = (LNode*)malloc(sizeof(LNode));
+//		s->data = x;
+//		s->next = head->next;
+//		head->next = s;
+//		scanf("%d", &x);
+//	}
+//
+//	return head;
+//}
+//
+//LNode* CreatLinkListByTail()
+//{
+//	LNode *s;
+//	LNode *tail;
+//	int x = 0;
+//	LNode* head = (LNode*)malloc(sizeof(LNode));
+//	head->next = NULL;
+//	tail = head;
+//
+//	printf("请输入数值(以-1结束)");
+//	scanf("%d", &x);
+//	while (x != -1)
+//	{
+//		s = (LNode*)malloc(sizeof(LNode));
+//		s->data = x;
+//		tail->next = s;
+//		tail = s;
+//		scanf("%d", &x);
+//	}
+//	tail->next = NULL;
+//	return head;
+//}
+//
+//LNode* Get_LinkList(LNode* head, int k)
+//{
+//	LNode *p = head;
+//	int j = 0;
+//	while ((p->next != NULL) && (j < k))
+//	{
+//		p = p->next;
+//		j++;
+//	}
+//	if (j == k)
+//		return p;
+//	else
+//		return NULL;
+//}
+//
+//int Insert_LinkList_pos(LNode* head, int i, DataType x)
+//{
+//	LNode *p, *s;
+//	p = Get_LinkList(head, i - 1);       //查找第i-1个节点
+//	if (p == NULL)
+//	{
+//		printf("插入位置i错误!\n");
+//		return 0;
+//	}
+//	else
+//	{
+//		s = (LNode*)malloc(sizeof(LNode));
+//		s->data = x;
+//		s->next = p->next;
+//		p->next = s;
+//		return 1;
+//	}
+//}
+//
+//int Del_LinkList(LNode* head, int i)
+//{
+//	LNode* p;
+//	LNode* q;
+//	p = Get_LinkList(head, i - 1);
+//	if (p == NULL)
+//	{
+//		printf("第i-1个结点不存在!\n");
+//		return 0;
+//	}
+//	else if (p->next == NULL)
+//	{
+//		printf("第i个结点不存在!\n");
+//		return 0;
+//	}
+//	else
+//	{
+//		q = p->next;
+//		p->next = q->next;
+//		free(q);
+//		return 1;
+//	}
+//
+//}
+//
+//void menu()
+//{
+//	printf("****************************************************\n");
+//	printf("******1.CreatLinkListByHead  0.exit           ******\n");
+//	printf("******2.CreatLinkListByTail  3.Insert_LinkList******\n");
+//	printf("******4.Del_LinkList         5.	LinkListShow  ******\n");
+//	printf("****************************************************\n");
+//}
+//
+////LinkList CreatLinkListByHead();
+////LinkList CreatLinkListByTail();
+////int Insert_LinkList(LinkList head, int i, DataType x);
+////LinkList Get_LinkList(LinkList head, int k);
+////int Del_LinkList(LinkList head, int i);
+//int main()
+//{
+//	int select = 0;
+//	LNode* head1 = NULL;
+//	LNode* head2 = NULL;
+//	int n = 0;
+//
+//	int pos = 0;
+//	int key = 0;
+//	do
+//	{
+//		menu();
+//		printf("请选择:>");
+//		scanf("%d", &select);
+//
+//		switch (select)
+//		{
+//		case 1:
+//			head1 = CreatLinkListByHead();
+//			LinkListShow(head1);
+//			break;
+//		case 2:
+//			head2 = CreatLinkListByTail();
+//			LinkListShow(head2);
+//			break;
+//		case 3:
+//			printf("请输入要插入的链表(1 或 2):>");
+//			scanf("%d", &n);
+//			if (n == 1)
+//			{
+//				printf("请输入要插入的位置:>");
+//				scanf("%d", &pos);
+//				printf("请输入要插入的值:>");
+//				scanf("%d", &key);
+//				Insert_LinkList_pos(head1, pos, key);
+//				LinkListShow(head1);
+//			}
+//			else if (n == 2)
+//			{
+//				printf("请输入要插入的位置:>");
+//				scanf("%d", &pos);
+//				printf("请输入要插入的值:>");
+//				scanf("%d", &key);
+//				Insert_LinkList_pos(head2, pos, key);
+//				LinkListShow(head2);
+//			}
+//			else
+//				printf("输入错误\n");
+//			break;
+//		case 4:
+//			printf("请输入要删除的链表(1 或 2):>");
+//			scanf("%d", &n);
+//			if (n == 1)
+//			{
+//				printf("请输入要删除的位置:>");
+//				scanf("%d", &pos);
+//				Del_LinkList(head1, pos);
+//				LinkListShow(head1);
+//			}
+//			else if (n == 2)
+//			{
+//				printf("请输入要删除的位置:>");
+//				scanf("%d", &pos);
+//				Del_LinkList(head2, pos);
+//				LinkListShow(head2);
+//			}
+//			else
+//				printf("输入错误\n");
+//			break;
+//		case 5:
+//			printf("请输入要显示的链表(1 或 2):>");
+//			scanf("%d", &n);
+//			if (n == 1)
+//			{
+//				LinkListShow(head1);
+//			}
+//			else if (n == 2)
+//			{
+//				LinkListShow(head2);
+//			}
+//			else
+//				printf("输入错误\n");
+//			break;
+//		case 0:
+//			printf("退出程序!\n");
+//			break;
+//		default:
+//			printf("选择错误，请重新输入!\n");
+//			break;
+//
+//		}
+//	} while (select);
+//	return 0;
+//}
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//#include <stdbool.h>
+//
+//bool isValid(char * s)
+//{
+//	if (s == NULL)
+//		return false;
+//	if (*s == '\0')
+//		return true;
+//
+//	int len = strlen(s);
+//	char *st = (char*)malloc(sizeof(char)* len);
+//	int top = 0;
+//
+//	while (*s != '\0')
+//	{
+//		if (*s == '(' || *s == '[' || *s == '{')
+//		{
+//			st[top++] = *s;
+//		}
+//		else
+//		{
+//			if (top == 0)
+//				return false;
+//
+//			if ((*s == ')'&&st[top - 1] != '(')
+//				|| (*s == ']'&&st[top - 1] != '[')
+//				|| (*s == '}'&&st[top - 1] != '{'))
+//				return false;
+//			top--;
+//		}
+//		s++;
+//	}
+//
+//	bool flag = (top == 0 ? 1 : 0);
+//	free(st);
+//	st = NULL;
+//	return flag;
+//}
+//
+//
+//void main()
+//{
+//	//char *str = "()[]{}";
+//	//char *str = "([)]";
+//	//char *str = "{[]}";
+//	char str[10] = { 0 };
+//	
+//	while (1)
+//	{
+//		printf("please input the string:>");
+//		scanf("%s", str);
+//		bool flag = isValid(str);
+//		if (flag)
+//			printf("The %s is true\n", str);
+//		else
+//			printf("The %s is false\n", str);
+//	}
+//
+//
+
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//#define MAXSIZE 1000
+//typedef struct
+//{
+//	int row;
+//	int col;
+//	int value;
+//}Tripe;
+//
+//typedef struct
+//{
+//	Tripe data[MAXSIZE + 1];
+//	int rows;
+//	int cols;
+//	int nums;
+//}TSMatrix;
+//
+//void TransposeTSMatrix(TSMatrix M, TSMatrix *T)
+//{
+//	int col, p, q, t;
+//	int num[MAXSIZE], cpot[MAXSIZE];
+//
+//	T->rows = M.cols; T->cols = M.rows; T->nums = M.nums;
+//	if (T->nums)
+//	{
+//		for (col = 1; col <= M.cols; ++col)
+//			num[col] = 0;
+//		for (t = 1; t <= M.nums; ++t)
+//			++num[M.data[t].col];
+//		cpot[1] = 1;
+//		for (col = 2; col <= M.cols; ++col)
+//			cpot[col] = cpot[col - 1] + num[col - 1];
+//		for (p = 1; p <= M.nums; ++p)
+//		{
+//			col = M.data[p].col;
+//			q = cpot[col];
+//			T->data[q].row = M.data[p].col;
+//			T->data[q].col = M.data[p].row;
+//			T->data[q].value = M.data[p].value;
+//			++cpot[col];
+//		}
+//	}
+//}
+//
+//void PrintTSMatrix(TSMatrix *M)
+//{
+//	int i, j;
+//	int t = 1;
+//	for (i = 1; i <= M->rows; i++)
+//	{
+//		for (j = 1; j <= M->cols; j++)
+//		{
+//			if (M->data[t].row == i&&M->data[t].col == j)
+//			{
+//				printf("%d   ", M->data[t].value);
+//				t++;
+//			}
+//			else printf("0   ");
+//		}
+//		printf("\n");
+//	}
+//}
+//int main()
+//{
+//	TSMatrix  A, T; 
+//	int k = 0;
+//	printf("输入矩阵大小\n");
+//	printf("请输入矩阵的行："); 
+//	scanf("%d", &A.rows);
+//	printf("请输入矩阵的列："); 
+//	scanf("%d", &A.cols);
+//	printf("请输入矩阵非零元素个数:"); 
+//	scanf("%d", &A.nums);
+//	printf("请输入三元组表:\n");
+//	for (k = 1; k <= A.nums; k++)
+//	{
+//		scanf("%d %d %d", &A.data[k].row, &A.data[k].col, &A.data[k].value);
+//	}
+//	printf("原矩阵\n");
+//	PrintTSMatrix(&A);
+//	TransposeTSMatrix(A, &T);
+//	printf("转置后的矩阵：\n");
+//	PrintTSMatrix(&T);
+//	return 0;
+//}
+
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
-#define DataType int
+//typedef struct BinTreeNode
+//{
+//	char data;
+//	struct BinTreeNode *leftChild;
+//	struct BinTreeNode *rightChild;
+//}BinTreeNode;
+//typedef struct BinTree
+//{
+//	BinTreeNode *root;
+//}BinTree;
+//
+//void BinTreeInit(BinTree *t)
+//{
+//	t->root = NULL;
+//}
+//
+//BinTreeNode* _BinTreeCreate()
+//{
+//	char item;
+//	scanf("%c", &item);
+//	if (item == '#')
+//	{
+//		return NULL;
+//	}
+//	else
+//	{
+//		BinTreeNode *t = (BinTreeNode*)malloc(sizeof(BinTreeNode));
+//		assert(t != NULL);
+//		t->data = item;
+//		t->leftChild = _BinTreeCreate();
+//		t->rightChild = _BinTreeCreate();
+//		return t;
+//	}
+//}
+//
+//void BinTreeCreate(BinTree *t)
+//{
+//	//_BinTreeCreate(&t->root);
+//	t->root = _BinTreeCreate();
+//}
+//
+//void _PreOrder(BinTreeNode *t)
+//{
+//	if (t != NULL)
+//	{
+//		printf("%c", t->data);
+//		_PreOrder(t->leftChild);
+//		_PreOrder(t->rightChild);
+//	}
+//}
+//
+//void PreOrder(BinTree *t)
+//{
+//	_PreOrder(t->root);
+//	printf("\n");
+//}
+//
+//void _InOrder(BinTreeNode *t)
+//{
+//	if (t != NULL)
+//	{
+//		_InOrder(t->leftChild);
+//		printf("%c", t->data);
+//		_InOrder(t->rightChild);
+//	}
+//}
+//
+//void InOrder(BinTree *t)
+//{
+//	_InOrder(t->root);
+//	printf("\n");
+//}
+//void main()
+//{
+//	BinTree bt;
+//	BinTreeInit(&bt);
+//	printf("请输入:>");
+//	BinTreeCreate(&bt);
+//	printf("PreOrder:>");
+//	PreOrder(&bt);
+//	printf("InOrder:>");
+//	InOrder(&bt);
+//}
 
-typedef struct node
-{
-	DataType data;
-	struct node *next;
-}LNode;
+//void _SearchByPre(BinTreeNode *t)
+//{
+//	if (t != NULL)
+//	{
+//		if (t->leftChild != NULL && t->rightChild != NULL)
+//			printf("%c", t->data);
+//		_SearchByPre(t->leftChild);
+//		_SearchByPre(t->rightChild);
+//	}
+//}
+//
+//void SearchByPre(BinTree *t)
+//{
+//	_SearchByPre(t->root);
+//	printf("\n");
+//}
+//void main()
+//{
+//	BinTree bt;
+//	BinTreeInit(&bt);
+//	printf("请输入:>");
+//	BinTreeCreate(&bt);
+//	printf("输出度为2的结点:>");
+//	SearchByPre(&bt);
+//}
 
 
-LNode* CreatLLinkListByHead();
-LNode* CreatLinkListByTail();
-int Insert_LinkList_pos(LNode* head, int i, DataType x);
-LNode* Get_LinkList(LNode* head, int k);
-int Del_LinkList(LNode* head, int i);
-void LinkListShow(LNode* head);
+//
+//char* tolowercase(char *str)
+//{
+//	char *ptr = str;
+//	while (*str)
+//	{
+//		if (*str >= 'a' && *str <= 'z')
+//			*str -=  32;
+//		str++;
+//	}
+//	return ptr;
+//}
+//int main()
+//{
+//	char str[100] = { 0 };
+//	char *p;
+//	scanf("%s", str);
+//	p = tolowercase(str);
+//	printf("%s\n", p);
+//	return 0;
+//}
 
-void LinkListShow(LNode* head)
-{
-	LNode *p = head->next;
-	if (p == NULL)
-		return;
-	while (p != NULL)
-	{
-		printf("%d->", p->data);
-		p = p->next;
-	}
-	printf("Over!\n");
-}
+struct A{
 
-LNode* CreatLinkListByHead()
-{
-	LNode *s;
-	int x;
-	LNode* head;
-	head = (LNode*)malloc(sizeof(LNode));
-	head->next = NULL;
+	long a1;
 
-	printf("请输入数值(以-1结束)");
-	scanf("%d", &x);
-	while (x != -1)
-	{
-		s = (LNode*)malloc(sizeof(LNode));
-		s->data = x;
-		s->next = head->next;
-		head->next = s;
-		scanf("%d", &x);
-	}
+	short a2;
 
-	return head;
-}
+	int a3;
 
-LNode* CreatLinkListByTail()
-{
-	LNode *s;
-	LNode *tail;
-	int x = 0;
-	LNode* head = (LNode*)malloc(sizeof(LNode));
-	head->next = NULL;
-	tail = head;
+	int *a4;
 
-	printf("请输入数值(以-1结束)");
-	scanf("%d", &x);
-	while (x != -1)
-	{
-		s = (LNode*)malloc(sizeof(LNode));
-		s->data = x;
-		tail->next = s;
-		tail = s;
-		scanf("%d", &x);
-	}
-	tail->next = NULL;
-	return head;
-}
+};
 
-LNode* Get_LinkList(LNode* head, int k)
-{
-	LNode *p = head;
-	int j = 0;
-	while ((p->next != NULL) && (j < k))
-	{
-		p = p->next;
-		j++;
-	}
-	if (j == k)
-		return p;
-	else
-		return NULL;
-}
 
-int Insert_LinkList_pos(LNode* head, int i, DataType x)
-{
-	LNode *p, *s;
-	p = Get_LinkList(head, i - 1);       //查找第i-1个节点
-	if (p == NULL)
-	{
-		printf("插入位置i错误!\n");
-		return 0;
-	}
-	else
-	{
-		s = (LNode*)malloc(sizeof(LNode));
-		s->data = x;
-		s->next = p->next;
-		p->next = s;
-		return 1;
-	}
-}
 
-int Del_LinkList(LNode* head, int i)
-{
-	LNode* p;
-	LNode* q;
-	p = Get_LinkList(head, i - 1);
-	if (p == NULL)
-	{
-		printf("第i-1个结点不存在!\n");
-		return 0;
-	}
-	else if (p->next == NULL)
-	{
-		printf("第i个结点不存在!\n");
-		return 0;
-	}
-	else
-	{
-		q = p->next;
-		p->next = q->next;
-		free(q);
-		return 1;
-	}
-
-}
-
-void menu()
-{
-	printf("****************************************************\n");
-	printf("******1.CreatLinkListByHead  0.exit           ******\n");
-	printf("******2.CreatLinkListByTail  3.Insert_LinkList******\n");
-	printf("******4.Del_LinkList         5.	LinkListShow  ******\n");
-	printf("****************************************************\n");
-}
-
-//LinkList CreatLinkListByHead();
-//LinkList CreatLinkListByTail();
-//int Insert_LinkList(LinkList head, int i, DataType x);
-//LinkList Get_LinkList(LinkList head, int k);
-//int Del_LinkList(LinkList head, int i);
 int main()
 {
-	int select = 0;
-	LNode* head1 = NULL;
-	LNode* head2 = NULL;
-	int n = 0;
-
-	int pos = 0;
-	int key = 0;
-	do
-	{
-		menu();
-		printf("请选择:>");
-		scanf("%d", &select);
-
-		switch (select)
-		{
-		case 1:
-			head1 = CreatLinkListByHead();
-			LinkListShow(head1);
-			break;
-		case 2:
-			head2 = CreatLinkListByTail();
-			LinkListShow(head2);
-			break;
-		case 3:
-			printf("请输入要插入的链表(1 或 2):>");
-			scanf("%d", &n);
-			if (n == 1)
-			{
-				printf("请输入要插入的位置:>");
-				scanf("%d", &pos);
-				printf("请输入要插入的值:>");
-				scanf("%d", &key);
-				Insert_LinkList_pos(head1, pos, key);
-				LinkListShow(head1);
-			}
-			else if (n == 2)
-			{
-				printf("请输入要插入的位置:>");
-				scanf("%d", &pos);
-				printf("请输入要插入的值:>");
-				scanf("%d", &key);
-				Insert_LinkList_pos(head2, pos, key);
-				LinkListShow(head2);
-			}
-			else
-				printf("输入错误\n");
-			break;
-		case 4:
-			printf("请输入要删除的链表(1 或 2):>");
-			scanf("%d", &n);
-			if (n == 1)
-			{
-				printf("请输入要删除的位置:>");
-				scanf("%d", &pos);
-				Del_LinkList(head1, pos);
-				LinkListShow(head1);
-			}
-			else if (n == 2)
-			{
-				printf("请输入要删除的位置:>");
-				scanf("%d", &pos);
-				Del_LinkList(head2, pos);
-				LinkListShow(head2);
-			}
-			else
-				printf("输入错误\n");
-			break;
-		case 5:
-			printf("请输入要显示的链表(1 或 2):>");
-			scanf("%d", &n);
-			if (n == 1)
-			{
-				LinkListShow(head1);
-			}
-			else if (n == 2)
-			{
-				LinkListShow(head2);
-			}
-			else
-				printf("输入错误\n");
-			break;
-		case 0:
-			printf("退出程序!\n");
-			break;
-		default:
-			printf("选择错误，请重新输入!\n");
-			break;
-
-		}
-	} while (select);
+	struct A a;
+	printf("%d", sizeof(a));
 	return 0;
 }
+
+
+
+
+
+
