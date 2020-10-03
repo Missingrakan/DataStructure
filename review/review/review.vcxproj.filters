@@ -26,5 +26,8 @@
     <ClInclude Include="Bintree.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="seqlist.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
