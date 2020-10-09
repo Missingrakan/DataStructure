@@ -2,13 +2,14 @@
 
 //#include "Bintree.h"
 //#include "slist.h"
-#include "sclist.h"
+//#include "sclist.h"
+#include "dclist.h"
 //#include "seqlist.h"
 
 int main()
 {
-	SCList mylist;
-	SCListInit(&mylist);
+	DCList mylist;
+	DCListInit(&mylist);
 
 	int pos;
 	int select = -1;
@@ -39,26 +40,26 @@ int main()
 			printf("请输入要插入的数据<-1结束>:>");
 			while (scanf("%d", &item), item != -1)
 			{
-				SCListPushBack(&mylist, item);
+				DCListPushBack(&mylist, item);
 			}
-			SCListShow(&mylist);
+			DCListShow(&mylist);
 			break;
 			case 2:
 			printf("请输入要插入的数据<-1结束>:>");
 			while (scanf("%d", &item), item != -1)
 			{
-				SCListPushFront(&mylist, item);
+				DCListPushFront(&mylist, item);
 			}
-			SCListShow(&mylist);
+			DCListShow(&mylist);
 			break;
 		case 3:
-			SCListShow(&mylist);
+			DCListShow(&mylist);
 			break;
 		case 4:
-			SCListPopBack(&mylist);
+			DCListPopBack(&mylist);
 			break;
 		case 5:
-			SCListPopFront(&mylist);
+			DCListPopFront(&mylist);
 			break;
 		case 6:
 			printf("请输入要插入的位置:>");
@@ -66,25 +67,25 @@ int main()
 			printf("请输入要插入的数据:>");
 			scanf("%d", &item);
 			//SListInsertByPos(&mylist, pos, item);
-			SCListShow(&mylist);
+			DCListShow(&mylist);
 			break;
 		case 7:
 			printf("请输入要插入的数据:>");
 			scanf("%d", &item);
-			//SCListInsertByVal(&mylist, item);
-			SCListShow(&mylist);
+			DCListInsertByVal(&mylist, item);
+			DCListShow(&mylist);
 			break;
 		case 8:
 			printf("请输入要删除的位置:>");
 			scanf("%d", &pos);
 			//SListDeleteByPos(&mylist, pos);
-			SCListShow(&mylist);
+			DCListShow(&mylist);
 			break;
 		case 9:
 			printf("请输入要删除的数据:>");
 			scanf("%d", &key);
-			SCListDeleteByVal(&mylist, key);
-			SCListShow(&mylist);
+			DCListDeleteByVal(&mylist, key);
+			DCListShow(&mylist);
 			break;
 		case 10:
 			printf("请输入要查找的位置:>");
@@ -98,23 +99,23 @@ int main()
 		case 11:
 			printf("请输入要查找的值:>");
 			scanf("%d", &key);
-			pos = SCListFindByVal(&mylist, key);
+			pos = DCListFindByVal(&mylist, key);
 			if (pos == -1)
 				printf("查找的数据不存在.\n");
 			else
 				printf("数据所在的下标为:> %d\n", pos);
 			break;
 		case 12:
-			//SCListSort(&mylist);
+			DCListSort(&mylist);
 			break;
 		case 13:
-			SCListReverse(&mylist);
+			DCListReverse(&mylist);
 			break;
 		case 14:
-			printf("SeqList Length = %d\n", SCListLength(&mylist));
+			//printf("SeqList Length = %d\n", SCListLength(&mylist));
 			break;
 		case 15:
-			SCListClear(&mylist);
+			DCListClear(&mylist);
 			break;
 		case 18:
 			//printf("capacity = %d\n", SeqListCapacity(&mylist));
@@ -127,7 +128,7 @@ int main()
 		system("cls");
 	}
 
-	SCListDestroy(&mylist);
+	DCListDestroy(&mylist);
 	return 0;
 }
 
