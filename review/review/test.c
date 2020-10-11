@@ -5,41 +5,101 @@
 //#include "sclist.h"
 //#include "dclist.h"
 //#include "seqlist.h"
-#include "stack.h"
+//#include "stack.h"
+#include "queue.h"
 
 int main()
 {
-	ListStack st;
-	ListStackInit(&st);
-	ListStackPush(&st, 1);
-	ListStackPush(&st, 2);
-	ListStackPush(&st, 3);
-	ListStackShow(st);
-	printf("==============\n");
-	ListStackPop(&st);
-	ListStackShow(st);
+	LinkQueue LQ;
+	LinkQueueInit(&LQ);
+	LinkQueueEn(&LQ, 1);
+	LinkQueueEn(&LQ, 2);
+	LinkQueueEn(&LQ, 3);
+	LinkQueueEn(&LQ, 4);
+	LinkQueueEn(&LQ, 5);
 
-	//SeqStack st;
-	//SeqStackInit(&st, STACK_DEFAULT_SIZE);
+	LinkQueueShow(&LQ);
 
-	//SeqStackPush(&st, 1);
-	//SeqStackPush(&st, 2);
-	//SeqStackPush(&st, 3);
-	//SeqStackPush(&st, 4);
-	//SeqStackPush(&st, 5);
-	//SeqStackPush(&st, 6);
-	//SeqStackPush(&st, 7);
-	//SeqStackPush(&st, 8);
+	LinkQueueDestroy(&LQ);
 
-	//int val = SeqStackTop(&st);
-	//SeqStackPop(&st);
+	//SeqCyQueue CQ;
+	//SeqQueueCyInit(&CQ, 8);
+	//SeqQueueCyEn(&CQ, 1);
+	//SeqQueueCyEn(&CQ, 2);
+	//SeqQueueCyEn(&CQ, 3);
+	//SeqQueueCyEn(&CQ, 4);
+	//SeqQueueCyEn(&CQ, 5);
 
-	//SeqStackPush(&st, 9);
+	//SeqQueueCyShow(&CQ);
+	//SeqQueueCyDe(&CQ);
+	//SeqQueueCyDe(&CQ);
+	//SeqQueueCyShow(&CQ);
 
-	//SeqStackShow(&st);
+	//SeqQueueCyEn(&CQ, 6);
+	//SeqQueueCyEn(&CQ, 7);
+	//SeqQueueCyEn(&CQ, 8);
+	//SeqQueueCyEn(&CQ, 9);
+
+	//SeqQueueCyShow(&CQ);
+
+	//SeqQueueCyEn(&CQ, 19);
+
+	//SeqQueue Q;
+	//SeqQueueInit(&Q, DEFAULT_QUEUE_SIZE);
+	//SeqQueueEn(&Q, 1); 
+	//SeqQueueEn(&Q, 2);
+	//SeqQueueEn(&Q, 3);
+	//SeqQueueEn(&Q, 4);
+	//SeqQueueEn(&Q, 5);
+	//SeqQueueShow(&Q);
+
+	//SeqQueueDe(&Q);
+	//SeqQueueDe(&Q);
+
+	//SeqQueueShow(&Q);
+
+	//SeqQueueEn(&Q, 6);
+	//SeqQueueEn(&Q, 7);
+	//SeqQueueEn(&Q, 8);
+	//SeqQueueEn(&Q, 9);
+
+	//SeqQueueDestroy(&Q);
+
 	return 0;
 }
 
+//int main()
+//{
+//	ListStack st;
+//	ListStackInit(&st);
+//	ListStackPush(&st, 1);
+//	ListStackPush(&st, 2);
+//	ListStackPush(&st, 3);
+//	ListStackShow(st);
+//	printf("==============\n");
+//	ListStackPop(&st);
+//	ListStackShow(st);
+//
+//	//SeqStack st;
+//	//SeqStackInit(&st, STACK_DEFAULT_SIZE);
+//
+//	//SeqStackPush(&st, 1);
+//	//SeqStackPush(&st, 2);
+//	//SeqStackPush(&st, 3);
+//	//SeqStackPush(&st, 4);
+//	//SeqStackPush(&st, 5);
+//	//SeqStackPush(&st, 6);
+//	//SeqStackPush(&st, 7);
+//	//SeqStackPush(&st, 8);
+//
+//	//int val = SeqStackTop(&st);
+//	//SeqStackPop(&st);
+//
+//	//SeqStackPush(&st, 9);
+//
+//	//SeqStackShow(&st);
+//	return 0;
+//}
 
 
 //int main()
