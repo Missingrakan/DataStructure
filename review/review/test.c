@@ -6,67 +6,131 @@
 //#include "dclist.h"
 //#include "seqlist.h"
 //#include "stack.h"
-#include "queue.h"
+//#include "queue.h"
+//#include "heap.h"
+#include "bst.h"
 
 int main()
 {
-	LinkQueue LQ;
-	LinkQueueInit(&LQ);
-	LinkQueueEn(&LQ, 1);
-	LinkQueueEn(&LQ, 2);
-	LinkQueueEn(&LQ, 3);
-	LinkQueueEn(&LQ, 4);
-	LinkQueueEn(&LQ, 5);
+	BSTree bst;
+	int i;
+	int j = 0;
+	int ar[] = { 45, 10, 24, 53, 12, 38, 21, 90, 30 };
+	int n = sizeof(ar) / sizeof(int);
+	BSTreeInit(&bst);
 
-	LinkQueueShow(&LQ);
+	for (i = 0; i<n; ++i)
+	{
+		Insert(&bst, ar[i]);
+	}
 
-	LinkQueueDestroy(&LQ);
+	printf("Min = %d\n", Min(bst));
+	printf("Max = %d\n", Max(bst));
 
-	//SeqCyQueue CQ;
-	//SeqQueueCyInit(&CQ, 8);
-	//SeqQueueCyEn(&CQ, 1);
-	//SeqQueueCyEn(&CQ, 2);
-	//SeqQueueCyEn(&CQ, 3);
-	//SeqQueueCyEn(&CQ, 4);
-	//SeqQueueCyEn(&CQ, 5);
+	Remove(&bst, 45);
 
-	//SeqQueueCyShow(&CQ);
-	//SeqQueueCyDe(&CQ);
-	//SeqQueueCyDe(&CQ);
-	//SeqQueueCyShow(&CQ);
+	return 0;
 
-	//SeqQueueCyEn(&CQ, 6);
-	//SeqQueueCyEn(&CQ, 7);
-	//SeqQueueCyEn(&CQ, 8);
-	//SeqQueueCyEn(&CQ, 9);
+	//BSTree bst;
+	//int i;
+	//int j = 0;
+	//int ar[] = { 45, 10, 24, 53, 12, 38, 21, 90, 30 };
+	//int n = sizeof(ar) / sizeof(int);
+	//BSTreeInit(&bst);
 
-	//SeqQueueCyShow(&CQ);
+	//for (i = 0; i<n; ++i)
+	//{
+	//	Insert(&bst, ar[i]);
+	//}
 
-	//SeqQueueCyEn(&CQ, 19);
-
-	//SeqQueue Q;
-	//SeqQueueInit(&Q, DEFAULT_QUEUE_SIZE);
-	//SeqQueueEn(&Q, 1); 
-	//SeqQueueEn(&Q, 2);
-	//SeqQueueEn(&Q, 3);
-	//SeqQueueEn(&Q, 4);
-	//SeqQueueEn(&Q, 5);
-	//SeqQueueShow(&Q);
-
-	//SeqQueueDe(&Q);
-	//SeqQueueDe(&Q);
-
-	//SeqQueueShow(&Q);
-
-	//SeqQueueEn(&Q, 6);
-	//SeqQueueEn(&Q, 7);
-	//SeqQueueEn(&Q, 8);
-	//SeqQueueEn(&Q, 9);
-
-	//SeqQueueDestroy(&Q);
+	//Sort(bst, ar, &j);
 
 	return 0;
 }
+
+//void main()
+//{
+//	int ar[] = { 27, 15, 19, 18, 28, 34, 65, 49, 25, 37 };
+//	int n = sizeof(ar) / sizeof(int);
+//	Heap hp;
+//	int i;
+//	HeapInit(&hp, n);
+//
+//	for (i = 0; i<n; ++i)
+//	{
+//		HeapInsert(&hp, ar[i]);
+//	}
+//
+//	HeapShow(&hp);
+//
+//	HeapRemove(&hp);
+//	HeapShow(&hp);
+//
+//	HeapRemove(&hp);
+//	HeapShow(&hp);
+//
+//	HeapDestroy(&hp);
+//}
+
+//int main()
+//{
+//	LinkQueue LQ;
+//	LinkQueueInit(&LQ);
+//	LinkQueueEn(&LQ, 1);
+//	LinkQueueEn(&LQ, 2);
+//	LinkQueueEn(&LQ, 3);
+//	LinkQueueEn(&LQ, 4);
+//	LinkQueueEn(&LQ, 5);
+//
+//	LinkQueueShow(&LQ);
+//
+//	LinkQueueDestroy(&LQ);
+//
+//	//SeqCyQueue CQ;
+//	//SeqQueueCyInit(&CQ, 8);
+//	//SeqQueueCyEn(&CQ, 1);
+//	//SeqQueueCyEn(&CQ, 2);
+//	//SeqQueueCyEn(&CQ, 3);
+//	//SeqQueueCyEn(&CQ, 4);
+//	//SeqQueueCyEn(&CQ, 5);
+//
+//	//SeqQueueCyShow(&CQ);
+//	//SeqQueueCyDe(&CQ);
+//	//SeqQueueCyDe(&CQ);
+//	//SeqQueueCyShow(&CQ);
+//
+//	//SeqQueueCyEn(&CQ, 6);
+//	//SeqQueueCyEn(&CQ, 7);
+//	//SeqQueueCyEn(&CQ, 8);
+//	//SeqQueueCyEn(&CQ, 9);
+//
+//	//SeqQueueCyShow(&CQ);
+//
+//	//SeqQueueCyEn(&CQ, 19);
+//
+//	//SeqQueue Q;
+//	//SeqQueueInit(&Q, DEFAULT_QUEUE_SIZE);
+//	//SeqQueueEn(&Q, 1); 
+//	//SeqQueueEn(&Q, 2);
+//	//SeqQueueEn(&Q, 3);
+//	//SeqQueueEn(&Q, 4);
+//	//SeqQueueEn(&Q, 5);
+//	//SeqQueueShow(&Q);
+//
+//	//SeqQueueDe(&Q);
+//	//SeqQueueDe(&Q);
+//
+//	//SeqQueueShow(&Q);
+//
+//	//SeqQueueEn(&Q, 6);
+//	//SeqQueueEn(&Q, 7);
+//	//SeqQueueEn(&Q, 8);
+//	//SeqQueueEn(&Q, 9);
+//
+//	//SeqQueueDestroy(&Q);
+//
+//	return 0;
+//}
 
 //int main()
 //{
