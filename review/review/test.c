@@ -8,45 +8,57 @@
 //#include "stack.h"
 //#include "queue.h"
 //#include "heap.h"
-#include "bst.h"
+//#include "bst.h"
+#include "sort.h"
 
 int main()
 {
-	BSTree bst;
-	int i;
-	int j = 0;
-	int ar[] = { 45, 10, 24, 53, 12, 38, 21, 90, 30 };
+	int ar[] = { 49, 38, 65, 97, 76, 13, 27, 49 };
 	int n = sizeof(ar) / sizeof(int);
-	BSTreeInit(&bst);
-
-	for (i = 0; i<n; ++i)
-	{
-		Insert(&bst, ar[i]);
-	}
-
-	printf("Min = %d\n", Min(bst));
-	printf("Max = %d\n", Max(bst));
-
-	Remove(&bst, 45);
-
-	return 0;
-
-	//BSTree bst;
-	//int i;
-	//int j = 0;
-	//int ar[] = { 45, 10, 24, 53, 12, 38, 21, 90, 30 };
-	//int n = sizeof(ar) / sizeof(int);
-	//BSTreeInit(&bst);
-
-	//for (i = 0; i<n; ++i)
-	//{
-	//	Insert(&bst, ar[i]);
-	//}
-
-	//Sort(bst, ar, &j);
-
+	PrintArray(ar, 0, n - 1);
+	TestSort(ar, 0, n - 1);
+	TestSortEfficiency();
 	return 0;
 }
+
+
+//int main()
+//{
+//	BSTree bst;
+//	int i;
+//	int j = 0;
+//	int ar[] = { 45, 10, 24, 53, 12, 38, 21, 90, 30 };
+//	int n = sizeof(ar) / sizeof(int);
+//	BSTreeInit(&bst);
+//
+//	for (i = 0; i<n; ++i)
+//	{
+//		Insert(&bst, ar[i]);
+//	}
+//
+//	printf("Min = %d\n", Min(bst));
+//	printf("Max = %d\n", Max(bst));
+//
+//	Remove(&bst, 45);
+//
+//	return 0;
+//
+//	//BSTree bst;
+//	//int i;
+//	//int j = 0;
+//	//int ar[] = { 45, 10, 24, 53, 12, 38, 21, 90, 30 };
+//	//int n = sizeof(ar) / sizeof(int);
+//	//BSTreeInit(&bst);
+//
+//	//for (i = 0; i<n; ++i)
+//	//{
+//	//	Insert(&bst, ar[i]);
+//	//}
+//
+//	//Sort(bst, ar, &j);
+//
+//	return 0;
+//}
 
 //void main()
 //{
