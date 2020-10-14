@@ -79,8 +79,8 @@ void _BinTreeCreate_1(BinTreeNode **t)
 		*t = (BinTreeNode*)malloc(sizeof(BinTreeNode));
 		assert(*t != NULL);
 		(*t)->data = item;
-		_BinTreeCreate_1((*t)->leftChild);
-		_BinTreeCreate_1((*t)->rightChild);
+		_BinTreeCreate_1(&(*t)->leftChild);
+		_BinTreeCreate_1(&(*t)->rightChild);
 	}
 }
 
@@ -245,7 +245,7 @@ BinTreeNode* Parent(BinTree *t, DataType key)
 }
 BinTreeNode* _Parent(BinTreeNode *t, DataType key)
 {
-	BinTree *pr;
+	BinTreeNode *pr;
 	BinTreeNode *p = _Find(t, key);
 
 	if (t == NULL || p == NULL || p == t)
@@ -288,5 +288,99 @@ bool _Equal(BinTreeNode *t1, BinTreeNode *t2)
 		&& _Equal(t1->leftChild, t2->leftChild)
 		&& _Equal(t2->rightChild, t2->rightChild);
 }
+
+#include "stack.h"
+
+void PreorderNoR(BinTree *t)
+{
+	_PreOrder(t->root);
+}
+
+void _PreOrder(BinTreeNode *t)
+{
+	if (t != NULL)
+	{
+		BinTreeNode *p;
+		ListStack st;
+		ListStackInit(&st);
+		ListStackPush(&st, t);
+
+		while (!ListStackEmpty(&st))
+		{
+			p = ListStackTop(&st);
+			ListStackPop(&st);
+			printf("%c ", p->data);
+			if (p->rightChild != NULL)
+				ListStackPush(&st, p->rightChild);
+			if (p->leftChild != NULL)
+				ListStackPush(&st, p->leftChild);
+		}
+	}
+}
+
+void InOrderNoR(BinTree *t)
+{
+	_InOrderNoR(t->root);
+}
+void _InOrderNoR(BinTreeNode *t)
+{
+	if (t != NULL)
+	{
+		BinTreeNode *p;
+		ListStack st;
+		ListStackInit(&st);
+		do
+		{
+			while (t != NULL)
+			{
+				ListStackPush(&st, t);
+				t = t->leftChild;
+			}
+
+			p = ListStackTop(&st);
+			ListStackPop(&st);
+			printf("%c ", p->data);
+
+			if (p->rightChild != NULL)
+				t = p->rightChild;
+		} while (!ListStackEmpty(&st) || t != NULL);
+	}
+}
+
+void PostOrderNoR(BinTree *t)
+{
+	_PostOrderNoR(t->root);
+}
+void _PostOrderNoR(BinTreeNode *t)
+{
+	if (t != NULL)
+	{
+		BinTreeNode *p, *pre=NULL:
+		ListStack st;
+		ListStackInit(&st);
+
+		do
+		{
+			while (t != NULL)
+			{
+				ListStackPush(&st, t);
+				t = t->leftChild;
+			}
+
+			p = ListStackTop(&st);
+			if (p->rightChild == NULL || p->rightChild == pre)
+			{
+				ListStackPop(&st);
+				printf("%c ", p->data);
+				pre = p;
+			}
+			else
+			{
+				t = p->rightChild;
+			}
+		}while(!ListStackEmpty(&st));
+	}
+}
+
 
 #endif
